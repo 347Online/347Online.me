@@ -1,5 +1,6 @@
 export default (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("src/style.css");
+  eleventyConfig.addGlobalData("layout", "layout/base.njk");
 
   return {
     passthroughFileCopy: true,

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve --incremental"
+    "start": "eleventy --serve"
   },
   "keywords": [],
   "author": "",

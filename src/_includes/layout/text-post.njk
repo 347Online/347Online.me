@@ -1,0 +1,10 @@
+---
+tags: blog
+---
+
+{% extends './base.njk' %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    {{ content | safe }}
+{% endblock %}
+{% block more %}<a href="{{ page.url }}">Permalink</a>{% endblock %}

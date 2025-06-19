@@ -1,0 +1,13 @@
+---
+tags: blog
+---
+
+{% extends './text-post.njk' %}
+{% block content %}
+    <h1>
+        🔗 <a href="{{ link }}">{{ title }}
+        {% if via %}&mdash; via {{ via }}{% endif %}
+    </a>
+</h1>
+{{ content | safe }}
+{% endblock %}
