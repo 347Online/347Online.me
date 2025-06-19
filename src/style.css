@@ -1,0 +1,83 @@
+/* Based on enough.css, https://jeffkreeftmeijer.github.io/enough.css, with some of my own tweaks */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+article {
+  margin-bottom: 5rem;
+}
+
+body {
+  font:
+    22px/1.6 system-ui,
+    sans-serif;
+  margin: auto;
+  max-width: 35em;
+  padding: 0 1em;
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1140px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 740px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 466px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+code,
+kbd,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Monaco, monospace;
+}
+
+pre {
+  background-color: #f8f8ff;
+  font-size: smaller;
+  overflow: auto;
+  padding: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  padding: 0.5em;
+  border: 1px solid;
+}
+
+article > h3 > a::before {
+  content: "🔗 ";
+}
+
+blockquote {
+  background: var(--quote-background-color);
+  border: 1px solid #ddd;
+  border-left: 0.25em solid #ddd;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote p {
+  display: inline;
+}
