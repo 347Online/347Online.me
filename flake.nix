@@ -27,19 +27,17 @@
             text = ''
               shopt -s globstar
 
-              if [[ ! -d "public" ]]; then
-                mkdir "public"
-              fi
+              outdir="_site"
 
               for x in resume/*.md; do
                 fname="$(basename "$x")"
                 template_path="resume/''${fname%.*}.template.html"
                 css_path="resume/''${fname%.*}.css"
 
-                cp resume/*.css public/
+                cp resume/*.css "$outdir/"
 
                 # Plaintext
-                pandoc "$x" -t plain -o "public/''${fname%.*}.txt"
+                pandoc "$x" -t plain -o "$outdir/''${fname%.*}.txt"
 
                 template () {
                   if [[ -f $template_path ]]; then
@@ -56,10 +54,10 @@
                 }
 
                 # HTML
-                eval "pandoc $x -t html $(template)" | prettier --stdin-filepath foo.html > "public/''${fname%.*}.html"
+                eval "pandoc $x -t html $(template)" | prettier --stdin-filepath foo.html > "$outdir/''${fname%.*}.html"
 
                 # PDF
-                eval "pandoc $x -t html $(template)$(css) -o public/''${fname%.*}.pdf"
+                eval "pandoc $x -t html $(template)$(css) -o $outdir/''${fname%.*}.pdf"
               done
             '';
           };
