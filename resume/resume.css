@@ -1,0 +1,60 @@
+@media print {
+  h1 {
+    margin-top: 0;
+  }
+  .pagebreak {
+    clear: both;
+    page-break-after: always;
+  }
+}
+
+body {
+  font-size: 9pt;
+  margin: auto;
+  max-width: 8.5in;
+  font-family: "Helvetica", sans-serif;
+}
+
+h1 {
+  font-size: 20pt;
+}
+
+h2 {
+  font-size: 13pt;
+}
+
+h3 {
+  font-size: 11pt;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+}
+
+ul {
+  padding-left: 16pt;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.summary {
+  font-size: 10pt;
+}
+
+.end {
+  float: right;
+}

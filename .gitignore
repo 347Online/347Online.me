@@ -1,2 +1,4 @@
+.direnv
 _site
+public
 node_modules
