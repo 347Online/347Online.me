@@ -1,6 +1,11 @@
 ---
 layout: layout/base.njk
 title: Blog
+pagination:
+  data: collections.blog
+  size: 2
+  alias: posts
+  reverse: true
 ---
 
 <style>
@@ -11,7 +16,7 @@ ul {
 }
 </style>
 <ul>
-    {% for post in collections.blog | reverse %}
+    {% for post in posts %}
         <li>
             {% if post.data.link %}
                 🔗 <a href="{{ post.data.link }}">{{ post.data.title }} ↗</a>
@@ -24,4 +29,17 @@ ul {
             <br />
         </li>
     {% endfor %}
+    <p>
+        {% if pagination.href.previous %}
+            <a href=" {{ pagination.href.previous }}">Previous</a>
+        {% else %}
+            Previous
+        {% endif %}
+        /
+        {% if pagination.href.next %}
+            <a href=" {{ pagination.href.next }}">Next</a>
+        {% else %}
+            Next
+        {% endif %}
+    </p>
 </ul>
