@@ -6,5 +6,5 @@ title: Katie Janzen
 
 Heya, I'm Katie. Pleased to meetcha
 
-Resume: [PDF](), [HTML](), [TXT]()
+Resume: [PDF](/resume.pdf), [HTML](/resume.html), [TXT](/resume.txt)
 
