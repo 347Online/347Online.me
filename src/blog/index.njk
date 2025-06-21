@@ -6,6 +6,7 @@ pagination:
   size: 15
   alias: posts
   reverse: true
+feeds: [{url: "/blog/rss.xml", name: "RSS"}, {url: "/blog/feed.xml", name: "Atom"}, {url: "/blog/feed.json", name: "JSON"}]
 ---
 
 <ul>
@@ -22,7 +23,7 @@ pagination:
             <br />
         </li>
     {% endfor %}
-    <p style="margin-bottom: 5em;">
+    <p>
         {% if pagination.href.previous %}
             <a href=" {{ pagination.href.previous }}">Previous</a>
         {% else %}
@@ -36,3 +37,12 @@ pagination:
         {% endif %}
     </p>
 </ul>
+<small>
+    <ul class="inline-list">
+        {% for feed in feeds %}
+            <li>
+                <a href="{{ feed.url }}">{{ feed.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</small>
