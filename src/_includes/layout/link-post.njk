@@ -2,16 +2,15 @@
 tags: blog
 ---
 
-{% extends './page.njk' %}
-{% block content %}
-    <header>
-        <h1>
-            🔗
-            <a href="{{ link }}">{{ title }}
-                {% if via %}&mdash; via {{ via }}{% endif %}
-            </a>
-        </h1>
-    </header>
+{% extends './text-post.njk' %}
+{% block before %}
     {{ super() }}
+    <strong>
+        🔗
+        <a href="{{ link }}">{{ title }}
+            {% if via %}&mdash; via {{ via }}{% endif %}
+        </a>
+    </strong>
 {% endblock %}
+{% block content %}{{ super() }}{% endblock %}
 {% block more %}{{ super() }}{% endblock %}

@@ -8,11 +8,9 @@
         <title>347Online.me | {{ title }}</title>
     </head>
     <body>
-        {% block before %}
-            <header>
-                <h1>{{ title }}</h1>
-            </header>
-        {% endblock %}
+        <header>
+            {% block before %}<h1>{{ title }}</h1>{% endblock %}
+        </header>
         {% block content %}{{ content | safe }}{% endblock %}
         {% block more %}{% endblock %}
     </body>

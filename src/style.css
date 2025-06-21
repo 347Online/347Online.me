@@ -6,11 +6,10 @@
 }
 
 nav {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   left: 50%;
   text-align: center;
-  transform: translate(-50%);
+  transform: translate(-50%, -140%);
 }
 
 article {
