@@ -10,7 +10,7 @@ nav {
   position: absolute;
   left: 50%;
   text-align: center;
-  transform: translate(-50%, -140%);
+  transform: translate(-50%);
 }
 
 article {
