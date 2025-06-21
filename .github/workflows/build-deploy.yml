@@ -1,0 +1,20 @@
+name: Build
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          nix develop --command yarn
+          nix develop --command yarn build
+          mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
+          ssh-keyscan ${{secrets.SSH_HOST}} >> ~/.ssh/known_hosts
+          echo "${{secrets.SSH_PRIVATE_KEY}}" > deploy_key
+          chmod 600 ./deploy_key
+          rsync -av --delete -e 'ssh -i ./deploy_key' _site/ "${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/home/katie/website"
