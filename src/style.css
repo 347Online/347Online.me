@@ -5,6 +5,16 @@
   }
 }
 
+ul.inline-list {
+  display: inline;
+  position: absolute;
+  text-align: center;
+}
+
+ul.inline-list > li {
+  display: inline;
+}
+
 nav {
   margin-top: 6em;
   position: absolute;
