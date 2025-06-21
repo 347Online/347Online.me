@@ -1,11 +1,10 @@
 ---
-layout: layout/page.njk
-title: Katie Janzen
+layout: layout/base.njk
+title: Home
 ---
 
-## Senior Software Engineer, Game Developer
+Heya, I'm Katie. I type funny words that make dreams come true. Pretty cool, right?
 
-Heya, I'm Katie. Pleased to meetcha
+If you'd like to listen to what I have to say, I have a [blog](/blog)
 
-Resume: [PDF](/resume.pdf), [HTML](/resume.html), [TXT](/resume.txt)
-
+Wanna know more about yours truly? [Read all about it](/about)
