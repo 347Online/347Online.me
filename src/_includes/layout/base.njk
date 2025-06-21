@@ -11,10 +11,12 @@
     <body>
         <!-- Grab the content from the page data, dump it here, and mark it as safe -->
         <!-- Safe docs: https://mozilla.github.io/nunjucks/templating.html#safe -->
-        {% block content %}
-            <h1>{{ title }}</h1>
-            {{ content | safe }}
+        {% block before %}
+            <header>
+                <h1>{{ title }}</h1>
+            </header>
         {% endblock %}
+        {% block content %}{{ content | safe }}{% endblock %}
         {% block more %}{% endblock %}
     </body>
 </html>

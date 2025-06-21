@@ -1,4 +1,5 @@
 ---
+layout: layout/page.njk
 title: Katie Janzen
 ---
 

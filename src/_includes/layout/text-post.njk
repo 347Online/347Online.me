@@ -2,10 +2,13 @@
 tags: blog
 ---
 
-{% extends './base.njk' %}
+{% extends './page.njk' %}
 {% block content %}
-    <h1>
-        <a href="{{ page.url }}">{{ title }}</a>
-    </h1>
-    {{ content | safe }}
+    <header>
+        <h1>
+            <a href="{{ page.url }}">{{ title }}</a>
+        </h1>
+    </header>
+    <article>{{ content | safe }}</article>
+    {{ super() }}
 {% endblock %}
