@@ -3,12 +3,12 @@ tags: blog
 ---
 
 {% extends './page.njk' %}
-{% block content %}
-    <header>
-        <h1>
-            <a href="{{ page.url }}">{{ title }}</a>
-        </h1>
-    </header>
-    <article>{{ content | safe }}</article>
+{% block before %}
     {{ super() }}
+    <p>
+        <strong>
+            <a href="{{ page.url }}">{{ date | postDate }}</a>
+        </strong>
+    </p>
 {% endblock %}
+{% block content %}<article>{{ super() }}</article>{% endblock %}
