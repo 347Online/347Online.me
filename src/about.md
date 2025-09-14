@@ -7,6 +7,7 @@ employerSite: https://amplify.com
 ---
 
 My name is Katie Janzen 🏳️‍🌈🏳️‍⚧️
+she/her/hers
 
 I'm a Software Engineer, Game Developer, and mother of two, originally from Kenai, Alaska, currently living in northwest Texas.
 
