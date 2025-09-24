@@ -7,7 +7,7 @@ tags: blog
     {{ super() }}
     <p>
         <strong>
-            <a href="{{ page.url }}">{{ date | postDate }}</a>
+            <a href="{{ page.url }}">{{ page.date | postDate }}</a>
         </strong>
     </p>
 {% endblock %}
