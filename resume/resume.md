@@ -81,7 +81,7 @@ ______________________________________________________________________
 
 Arcade Action Game where players destroy enemy spacecraft to claim high scores
 
-- Orchestrated a system for a dynamic soundtrack with different tracks being played depending on the ga†me state
+- Orchestrated a system for a dynamic soundtrack with different tracks being played depending on the game state
 - Integrated Juju Adams and Alynne Keith’s Input library for seamless control across a wide variety of controller hardware
 - Created a complex underlying weapons system shared across the player and enemy objects alike, enabling rapid prototyping of new weapons
 

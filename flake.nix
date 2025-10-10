@@ -15,14 +15,13 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          config.allowUnsupportedSystem = true;
         };
         scripts = {
           build-resume = pkgs.writeShellApplication {
             name = "build-resume";
             runtimeInputs = with pkgs; [
               nodePackages.prettier
-              wkhtmltopdf
+              python3Packages.weasyprint
             ];
             text = ''
               shopt -s globstar
