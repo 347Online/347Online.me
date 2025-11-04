@@ -15,7 +15,7 @@ kclip install # installs symlink aliases for kccopy/kcpaste
 
 More info: [github.com/347Online/kclip-cli](https://github.com/347Online/kclip-cli)
 
-***
+---
 
 I've long been annoyed by not having a consistent commandline interface to the clipboard across macOS and Linux. I had long ago had the idea to use a shell script to abstract over the different tools available across the different platforms, but this idea wasn't particularly satisfying and I never ended up moving on it.
 

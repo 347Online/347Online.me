@@ -1,6 +1,6 @@
 ---
 layout: layout/page.njk
-title: Blog
+title: Katie's Place
 pagination:
   data: collections.blog
   size: 15
@@ -9,15 +9,16 @@ pagination:
 feeds: [{url: "/blog/rss.xml", name: "RSS"}, {url: "/blog/feed.xml", name: "Atom"}, {url: "/blog/feed.json", name: "JSON"}]
 ---
 
-<ul>
+<ul class="posts-list">
     {% for post in posts %}
         <li>
-            {% if post.data.link %}
-                🔗 <a href="{{ post.data.link }}">{{ post.data.title }} ↗</a>
-            {% else %}
-                {{ post.data.title }}
-            {% endif %}
-            <br />
+            <h2>
+                {% if post.data.link %}
+                    <a href="{{ post.data.link }}" class="link-target">{{ post.data.title }}&nbsp;↗</a>
+                {% else %}
+                    {{ post.data.title }}
+                {% endif %}
+            </h2>
             <a href="{{ post.url }}">{{ post.date | postDate }}</a>
             <article>{{ post.content | safe }}</article>
             <br />

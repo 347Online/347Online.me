@@ -1,9 +1,11 @@
 // @ts-check
 
+import redirectPlugin from "eleventy-plugin-redirects";
+import embedYouTube from "eleventy-plugin-youtube-embed";
 import { DateTime } from "luxon";
 const TIME_ZONE = "America/Chicago";
 
-const extraceExcerpt = ({ templateContent = "" }) => {
+const extractExcerpt = ({ templateContent = "" }) => {
   const end = templateContent.indexOf("</p>");
 
   if (end > 0) return templateContent.substring(0, end + 4);
@@ -11,6 +13,9 @@ const extraceExcerpt = ({ templateContent = "" }) => {
   return templateContent;
 };
 
+/**
+ * @param {string | Date} dateValue
+ */
 function parseDate(dateValue) {
   let localDate;
   if (dateValue instanceof Date) {
@@ -55,11 +60,16 @@ const feedConfig = {
 
 /** @param {any} eleventyConfig */
 export default (eleventyConfig) => {
-  eleventyConfig.addShortcode("excerpt", extraceExcerpt);
-  eleventyConfig.addPassthroughCopy("src/style.css");
+  eleventyConfig.addShortcode("excerpt", extractExcerpt);
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
+
+  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("**/*.pdf");
+
+  eleventyConfig.addPlugin(embedYouTube);
+  eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
     ...feedConfig,
