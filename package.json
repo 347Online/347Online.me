@@ -15,6 +15,7 @@
     "@11ty/eleventy": "^3.1.1",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
     "@types/11ty__eleventy-plugin-rss": "^2.0.0",
-    "eleventy-plugin-redirects": "^1.0.0"
+    "eleventy-plugin-redirects": "^1.0.0",
+    "eleventy-plugin-youtube-embed": "^1.13.0"
   }
 }
