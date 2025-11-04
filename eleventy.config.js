@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-check
 
 import { DateTime } from "luxon";
 import redirectPlugin from "eleventy-plugin-redirects";
@@ -61,14 +61,15 @@ const feedConfig = {
 /** @param {any} eleventyConfig */
 export default (eleventyConfig) => {
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
-  eleventyConfig.addPassthroughCopy("src/style.css");
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
+
+  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("**/*.pdf");
+
   eleventyConfig.addPlugin(embedYouTube);
-  eleventyConfig.addPlugin(redirectPlugin, {
-    template: "clientSide",
-  });
+  eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
     ...feedConfig,
