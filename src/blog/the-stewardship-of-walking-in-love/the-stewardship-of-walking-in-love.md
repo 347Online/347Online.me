@@ -12,7 +12,7 @@ May you rest in peace.
 
 https://youtu.be/bQ5HQ57iG5k
 
-### The Stewardship of Walking in Love ([PDF]({{ "./printable.pdf" }}))
+### The Stewardship of Walking in Love ([PDF](/blog/the-stewardship-of-walking-in-love/printable.pdf))
 
 Good morning.
 
