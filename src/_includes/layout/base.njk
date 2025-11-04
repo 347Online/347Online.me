@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/assets/style.css" />
         <link rel="me" href="https://hachyderm.io/@347Online" />
-        <title>{{ title }} | 347Online.me</title>
+        <title>{{ title }}
+            {% if title != "347Online.me" %}| 347Online.me{% endif %}
+        </title>
     </head>
     <body>
         <header>
