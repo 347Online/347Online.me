@@ -1,9 +1,9 @@
 // @ts-check
 
-import { DateTime } from "luxon";
 import redirectPlugin from "eleventy-plugin-redirects";
-const TIME_ZONE = "America/Chicago";
 import embedYouTube from "eleventy-plugin-youtube-embed";
+import { DateTime } from "luxon";
+const TIME_ZONE = "America/Chicago";
 
 const extractExcerpt = ({ templateContent = "" }) => {
   const end = templateContent.indexOf("</p>");
