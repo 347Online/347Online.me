@@ -48,7 +48,7 @@ const feedConfig = {
   },
   metadata: {
     language: "en",
-    title: "347Online.me | Blog",
+    title: "Katie's Place | 347Online.me",
     subtitle: "",
     base: "https://347online.me/blog/",
     author: {
