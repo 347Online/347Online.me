@@ -1,6 +1,7 @@
 // @ts-check
 
 import { DateTime } from "luxon";
+import redirectPlugin from "eleventy-plugin-redirects";
 const TIME_ZONE = "America/Chicago";
 
 const extraceExcerpt = ({ templateContent = "" }) => {
@@ -60,6 +61,7 @@ export default (eleventyConfig) => {
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
+  eleventyConfig.addPlugin(redirectPlugin);
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
     ...feedConfig,
