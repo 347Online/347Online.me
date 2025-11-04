@@ -1,8 +1,17 @@
 /* Based on enough.css, https://jeffkreeftmeijer.github.io/enough.css, with some of my own tweaks */
+:root {
+  /* --block-bg-color: gray; */
+}
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
+    /* --block-bg-color: #f8f8ff; */
+    --block-border-color: #3a3e41;
   }
+}
+
+h2 {
+  font-size: 22pt;
 }
 
 ul.inline-list {
@@ -66,7 +75,8 @@ pre {
 }
 
 pre {
-  background-color: #f8f8ff;
+  border: 1px solid var(--block-border-color);
+  background-color: --block-bg-color;
   font-size: smaller;
   overflow: auto;
   padding: 1em;
@@ -83,14 +93,10 @@ th {
   border: 1px solid;
 }
 
-article > h3 > a::before {
-  content: "🔗 ";
-}
-
 blockquote {
-  background: var(--quote-background-color);
-  border: 1px solid #ddd;
-  border-left: 0.25em solid #ddd;
+  background: var(--block-bg-color);
+  border: 1px solid var(--block-border-color);
+  border-left: 0.25em solid var(--block-border-color);
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   quotes: "\201C" "\201D" "\2018" "\2019";
@@ -98,4 +104,13 @@ blockquote {
 
 blockquote p {
   display: inline;
+}
+
+ul.posts-list {
+  list-style: none;
+  padding-left: 0;
+
+  a.link-target::before {
+    content: "🔗 ";
+  }
 }
