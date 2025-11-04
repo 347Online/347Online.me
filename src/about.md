@@ -4,6 +4,8 @@ title: 347Online.me
 jobTitle: Senior Software Engineer
 employer: Amplify Education
 employerSite: https://amplify.com
+aliases:
+- /
 ---
 
 Hey there, I'm Katie Janzen (she/her). I'm a mother of two, originally from Kenai, Alaska. I type funny words that make dreams come true. Pretty cool, right?

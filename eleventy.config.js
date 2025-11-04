@@ -61,7 +61,9 @@ export default (eleventyConfig) => {
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
-  eleventyConfig.addPlugin(redirectPlugin);
+  eleventyConfig.addPlugin(redirectPlugin, {
+    template: "clientSide",
+  });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
     ...feedConfig,
