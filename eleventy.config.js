@@ -4,6 +4,8 @@ import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
 import { DateTime } from "luxon";
+import footnote_plugin from "markdown-it-footnote";
+
 const TIME_ZONE = "America/Chicago";
 
 const extractExcerpt = ({ templateContent = "" }) => {
@@ -64,7 +66,7 @@ export default (eleventyConfig) => {
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
-
+  eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(footnote_plugin));
   eleventyConfig.addCollection("releasedPosts", (api) =>
     api
       .getFilteredByTag("blog")
