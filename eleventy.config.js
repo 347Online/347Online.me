@@ -1,5 +1,6 @@
 // @ts-check
 
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
@@ -77,6 +78,7 @@ export default (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("**/*.pdf");
 
   eleventyConfig.addPlugin(embedYouTube);
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
