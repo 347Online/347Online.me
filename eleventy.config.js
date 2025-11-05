@@ -1,5 +1,6 @@
 // @ts-check
 
+import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
 import { DateTime } from "luxon";
@@ -38,7 +39,6 @@ function parseDate(dateValue) {
 const postDateFilter = (dateObj) =>
   DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
 
-import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 const feedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
@@ -64,6 +64,12 @@ export default (eleventyConfig) => {
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
+
+  eleventyConfig.addCollection("releasedPosts", (api) =>
+    api
+      .getFilteredByTag("blog")
+      .filter((x) => new Date().getTime() >= x.date.getTime()),
+  );
 
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("**/*.pdf");
