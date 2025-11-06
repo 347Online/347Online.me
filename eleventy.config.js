@@ -49,7 +49,7 @@ const feedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
   collection: {
-    name: "blog",
+    name: "releasedPosts",
     limit: 0, // 0 means no limit
   },
   metadata: {
