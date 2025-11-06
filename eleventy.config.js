@@ -1,8 +1,15 @@
 // @ts-check
 
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
 import { DateTime } from "luxon";
+import MarkdownIt from "markdown-it";
+import markdownItAttrs from "markdown-it-attrs";
+import footnote_plugin from "markdown-it-footnote";
+import MarkdownItGitHubAlerts from "markdown-it-github-alerts";
+
 const TIME_ZONE = "America/Chicago";
 
 const extractExcerpt = ({ templateContent = "" }) => {
@@ -38,7 +45,6 @@ function parseDate(dateValue) {
 const postDateFilter = (dateObj) =>
   DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
 
-import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 const feedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
@@ -64,11 +70,24 @@ export default (eleventyConfig) => {
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
+  eleventyConfig.setLibrary(
+    "md",
+    MarkdownIt({ html: true, breaks: true, linkify: true })
+      .use(footnote_plugin)
+      .use(MarkdownItGitHubAlerts)
+      .use(markdownItAttrs),
+  );
+  eleventyConfig.addCollection("releasedPosts", (api) =>
+    api
+      .getFilteredByTag("blog")
+      .filter((x) => new Date().getTime() >= x.date.getTime()),
+  );
 
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("**/*.pdf");
 
   eleventyConfig.addPlugin(embedYouTube);
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
