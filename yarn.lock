@@ -71,11 +71,6 @@
     debug "^4.4.0"
     posthtml-match-helper "^2.0.3"
 
-"@11ty/eleventy-plugin-img@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@11ty/eleventy-plugin-img/-/eleventy-plugin-img-1.0.0-beta.1.tgz#448dddaad7ee3b943fb7bcda84169cf4332e4ee9"
-  integrity sha512-VR+QhyiRx8afzoquTzg9Ng6DErZLLmdUrG63p55Y5AjEn9gk3uaVVHKaGzzh55sxh8px6u4XSeWFWnu/e9qycg==
-
 "@11ty/eleventy-plugin-rss@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@11ty/eleventy-plugin-rss/-/eleventy-plugin-rss-2.0.4.tgz#3c0ba2792d5536345d5689068d598f26a8acfb75"
@@ -91,10 +86,10 @@
   resolved "https://registry.yarnpkg.com/@11ty/eleventy-utils/-/eleventy-utils-2.0.7.tgz#40fa604864d64e98412f4f068a34379b471beddd"
   integrity sha512-6QE+duqSQ0GY9rENXYb4iPR4AYGdrFpqnmi59tFp9VrleOl0QSh8VlBr2yd6dlhkdtj7904poZW5PvGr9cMiJQ==
 
-"@11ty/eleventy@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-3.1.1.tgz#9be05effd83b64811a129afaff467cc5597764cf"
-  integrity sha512-nsMCW44WSYzpi6JSQ1ar/wlotj/2cxuP4AABX5Dxqwol3IQ3SkEMgcAugP1t1mthv5I0kIB9lql1Jv/lhUHIkg==
+"@11ty/eleventy@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-3.1.2.tgz#a3b400babd31e0244ae9284bb60c811d773dca5d"
+  integrity sha512-IcsDlbXnBf8cHzbM1YBv3JcTyLB35EK88QexmVyFdVJVgUU6bh9g687rpxryJirHzo06PuwnYaEEdVZQfIgRGg==
   dependencies:
     "@11ty/dependency-tree" "^4.0.0"
     "@11ty/dependency-tree-esm" "^2.0.0"
@@ -103,13 +98,13 @@
     "@11ty/eleventy-utils" "^2.0.7"
     "@11ty/lodash-custom" "^4.17.21"
     "@11ty/posthtml-urls" "^1.0.1"
-    "@11ty/recursive-copy" "^4.0.1"
+    "@11ty/recursive-copy" "^4.0.2"
     "@sindresorhus/slugify" "^2.2.1"
     bcp-47-normalize "^2.3.0"
     chokidar "^3.6.0"
     debug "^4.4.1"
     dependency-graph "^1.0.0"
-    entities "^6.0.0"
+    entities "^6.0.1"
     filesize "^10.1.6"
     gray-matter "^4.0.3"
     iso-639-1 "^3.1.5"
@@ -145,7 +140,7 @@
     list-to-array "^1.1.0"
     parse-srcset "^1.0.2"
 
-"@11ty/recursive-copy@^4.0.1":
+"@11ty/recursive-copy@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@11ty/recursive-copy/-/recursive-copy-4.0.2.tgz#6349f2e0a38c7229ff32773ba164e8e9eb2e3fc6"
   integrity sha512-174nFXxL/6KcYbLYpra+q3nDbfKxLxRTNVY1atq2M1pYYiPfHse++3IFNl8mjPFsd7y2qQjxLORzIjHMjL3NDQ==
@@ -580,7 +575,7 @@ entities@^4.4.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-4.5.0.tgz#5d268ea5e7113ec74c4d033b79ea5a35a488fb48"
   integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
 
-entities@^6.0.0:
+entities@^6.0.0, entities@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-6.0.1.tgz#c28c34a43379ca7f61d074130b2f5f7020a30694"
   integrity sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g==
@@ -857,10 +852,20 @@ luxon@^3.6.1:
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.6.1.tgz#d283ffc4c0076cb0db7885ec6da1c49ba97e47b0"
   integrity sha512-tJLxrKJhO2ukZ5z0gyjY1zPh3Rh88Ej9P7jNrZiHMUXHae1yvI2imgOZtL1TO8TW6biMMKfTtAOoEJANgtWBMQ==
 
+markdown-it-attrs@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-4.3.1.tgz#1e1f9bd2c87276d8f4ed74ad4268df428b7deee6"
+  integrity sha512-/ko6cba+H6gdZ0DOw7BbNMZtfuJTRp9g/IrGIuz8lYc/EfnmWRpaR3CFPnNbVz0LDvF8Gf1hFGPqrQqq7De0rg==
+
 markdown-it-footnote@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-footnote/-/markdown-it-footnote-4.0.0.tgz#02ede0cb68a42d7e7774c3abdc72d77aaa24c531"
   integrity sha512-WYJ7urf+khJYl3DqofQpYfEYkZKbmXmwxQV8c8mO/hGIhgZ1wOe7R4HLFNwqx7TjILbnC98fuyeSsin19JdFcQ==
+
+markdown-it-github-alerts@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-github-alerts/-/markdown-it-github-alerts-1.0.0.tgz#266683fda3fef2d0707eb69c5dd3fa4cf0e4386b"
+  integrity sha512-RU3cbB/ewujrDpYNdyabvp4CscZ5J/3D71NWbJW+JSA0nplfutIXDMCwtGWlMLwzgBDAYkFMvYGkigq8nWOVdA==
 
 markdown-it@^14.1.0:
   version "14.1.0"
