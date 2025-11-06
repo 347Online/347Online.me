@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "devDependencies": {
+  "dependencies": {
     "@11ty/eleventy": "^3.1.1",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-img": "^1.0.0-beta.1",
