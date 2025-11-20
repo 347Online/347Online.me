@@ -79,11 +79,14 @@ export default defineConfig((eleventyConfig) => {
       .use(MarkdownItGitHubAlerts)
       .use(markdownItAttrs),
   );
-  eleventyConfig.addCollection("releasedPosts", (api) =>
-    api
+  eleventyConfig.addCollection("releasedPosts", (api) => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    return api
       .getFilteredByTag("blog")
-      .filter((x) => new Date().getTime() >= x.date.getTime()),
-  );
+      .filter((x) => yesterday.getTime() >= x.date.getTime());
+  });
 
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("**/*.pdf");
