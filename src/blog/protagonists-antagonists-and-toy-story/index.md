@@ -1,7 +1,7 @@
 ---
 layout: layout/text-post.njk
 title: Protagonists, Antagonists, and Toy Story
-date: 2025-11-22
+date: 2025-11-20
 ---
 
 Recently, in a conversation with my friend and colleague Zak^[Who, by the way, also made the image seen at the top of this article which he has graciously allowed me to use here. Thanks Zak!], we came upon the subject of Toy Story^[This is an extremely common occurrence in conversations with me. My brain is a machine that turns conversational context into Toy Story references 😅]. Zak made the rather bold claim that Woody is the true villain of the first film, and we had a fun little back and forth about that before our attention was drawn back to other matters. I've seen this take go around a few times over the years, and there is certainly some truth to it! This has been rattling around in my head ever since, so I'd like to offer the slightly more complex perspective I eventually sent to Zak the following Saturday.
