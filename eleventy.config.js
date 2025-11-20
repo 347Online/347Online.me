@@ -1,5 +1,6 @@
 // @ts-check
 
+import defineConfig from "11ty.ts";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
@@ -42,9 +43,11 @@ function parseDate(dateValue) {
   return localDate;
 }
 
+/** @param {Date} dateObj */
 const postDateFilter = (dateObj) =>
   DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
 
+/** @type {feedPlugin.Options} feedConfig */
 const feedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
@@ -64,8 +67,7 @@ const feedConfig = {
   },
 };
 
-/** @param {any} eleventyConfig */
-export default (eleventyConfig) => {
+export default defineConfig((eleventyConfig) => {
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
@@ -88,6 +90,7 @@ export default (eleventyConfig) => {
 
   eleventyConfig.addPlugin(embedYouTube);
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
+  // @ts-expect-error redirectPlugin is badly behaved here
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
@@ -110,4 +113,4 @@ export default (eleventyConfig) => {
       output: "_site",
     },
   };
-};
+});
