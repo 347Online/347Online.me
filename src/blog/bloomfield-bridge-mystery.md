@@ -2,7 +2,6 @@
 layout: layout/link-post.njk
 title: The Mystery of the Bloomfield Bridge
 link: https://tylervigen.com/the-mystery-of-the-bloomfield-bridge
-via: tylervigen.com
 date: 2025-05-13
 ---
 

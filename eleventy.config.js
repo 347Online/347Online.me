@@ -74,7 +74,10 @@ export default defineConfig((eleventyConfig) => {
   eleventyConfig.addFilter("postDate", postDateFilter);
   eleventyConfig.setLibrary(
     "md",
-    MarkdownIt({ html: true, breaks: true, linkify: true })
+    MarkdownIt({
+      html: true,
+      linkify: true,
+    })
       .use(footnote_plugin)
       .use(MarkdownItGitHubAlerts)
       .use(markdownItAttrs),

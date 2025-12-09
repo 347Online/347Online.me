@@ -2,7 +2,6 @@
 layout: layout/link-post.njk
 title: Your product shouldn’t require showing my legal name
 link: https://ntietz.com/blog/your-product-shouldnt-require-showing-my-legal-name/
-via: ntietz.com
 date: 2025-02-24
 ---
 

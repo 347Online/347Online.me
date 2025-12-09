@@ -2,7 +2,6 @@
 layout: layout/link-post.njk
 title: Estimating projects sells them short (and that’s okay)
 link: https://ntietz.com/blog/estimating-projects-short-sale/
-via: ntietz.com
 date: 2024-12-17
 ---
 

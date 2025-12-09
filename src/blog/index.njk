@@ -14,12 +14,14 @@ feeds: [{url: "/blog/rss.xml", name: "RSS"}, {url: "/blog/feed.xml", name: "Atom
         <li>
             <h2>
                 {% if post.data.link %}
-                    <a href="{{ post.data.link }}" class="link-target">{{ post.data.title }}&nbsp;↗</a>
+                    <a href="{{ post.data.link }}" class="link-target">{{ post.data.title }}</a>
                 {% else %}
                     {{ post.data.title }}
                 {% endif %}
             </h2>
-            <a href="{{ post.url }}">{{ post.date | postDate }}</a>
+            <p>
+                <strong><a href="{{ post.url }}">{{ post.date | postDate }}</a></strong>
+            </p>
             <article>{{ post.content | safe }}</article>
             <br />
         </li>

@@ -6,6 +6,10 @@
   }
 }
 
+h1 {
+  font-size: 28pt;
+}
+
 h2 {
   font-size: 22pt;
 }
@@ -106,11 +110,23 @@ blockquote p {
   display: inline;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.link-target::before {
+  content: "🔗\00a0";
+}
+
+a.link-target::after {
+  content: "\00a0↗";
+}
+
 ul.posts-list {
   list-style: none;
   padding-left: 0;
-
-  a.link-target::before {
-    content: "🔗 ";
-  }
 }

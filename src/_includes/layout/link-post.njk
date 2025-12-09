@@ -3,14 +3,8 @@ tags: blog
 ---
 
 {% extends './text-post.njk' %}
-{% block before %}
-    {{ super() }}
-    <strong>
-        🔗
-        <a href="{{ link }}">{{ title }}
-            {% if via %}&mdash; via {{ via }}{% endif %}
-        </a>
-    </strong>
+{% block title %}
+    <h1>
+        <a href="{{ link }}" class="link-target">{{ title }}</a>
+    </h1>
 {% endblock %}
-{% block content %}{{ super() }}{% endblock %}
-{% block more %}{{ super() }}{% endblock %}
