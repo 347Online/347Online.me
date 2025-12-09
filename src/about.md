@@ -10,9 +10,9 @@ aliases:
 
 Hey there, I'm Katie Janzen (she/her). I'm a mother of two, originally from Kenai, Alaska. I type funny words that make dreams come true. Pretty cool, right?
 
-I currently work as a <span title="views expressed herein are solely my own and do not reflect the views of my employer etc. etc. &mdash; is anyone actually reading this? 🤔">{{jobTitle}} @ [{{employer}}]({{employerSite}})</span>.
+I currently work as a <span title="views expressed herein are solely my own and do not reflect the views of my employer etc. etc. &mdash; is anyone actually reading this? 🤔">{{jobTitle}} @ [{{employer}}]({{employerSite}})</span>
 
-I'm also a [writer](/blog) and [Independent Game Developer](https://347online.itch.io/)
+I'm also a [writer](/blog) and [independent game developer](https://347online.itch.io/)
 
 ## Get in touch
 
