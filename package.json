@@ -4,8 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "eleventy && build-resume",
-    "start": "eleventy --serve"
+    "build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts && build-resume",
+    "start": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts --serve --incremental"
   },
   "keywords": [],
   "author": "347Online",
@@ -24,6 +24,14 @@
     "markdown-it-github-alerts": "^1.0.0",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.3.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/11ty__eleventy-img": "^4.0.0",
+    "@types/11ty__eleventy-plugin-rss": "^2.0.0",
+    "@types/luxon": "^3.7.1",
+    "@types/markdown-it-attrs": "^4.1.3",
+    "@types/markdown-it-footnote": "^3.0.4"
   }
 }

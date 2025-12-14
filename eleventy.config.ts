@@ -1,5 +1,3 @@
-// @ts-check
-
 import defineConfig from "11ty.ts";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
@@ -21,11 +19,8 @@ const extractExcerpt = ({ templateContent = "" }) => {
   return templateContent;
 };
 
-/**
- * @param {string | Date} dateValue
- */
-function parseDate(dateValue) {
-  let localDate;
+function parseDate(dateValue: string | Date) {
+  let localDate: DateTime<true | false> | undefined;
   if (dateValue instanceof Date) {
     // and YAML
     localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(
@@ -43,11 +38,9 @@ function parseDate(dateValue) {
   return localDate;
 }
 
-/** @param {Date} dateObj */
-const postDateFilter = (dateObj) =>
+const postDateFilter = (dateObj: Date) =>
   DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
 
-/** @type {feedPlugin.Options} feedConfig */
 const feedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
@@ -65,7 +58,7 @@ const feedConfig = {
       email: "katiejanzen@347online.me",
     },
   },
-};
+} as const;
 
 export default defineConfig((eleventyConfig) => {
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
@@ -96,7 +89,6 @@ export default defineConfig((eleventyConfig) => {
 
   eleventyConfig.addPlugin(embedYouTube);
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
-  // @ts-expect-error redirectPlugin is badly behaved here
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
