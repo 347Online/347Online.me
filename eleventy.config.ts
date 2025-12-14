@@ -1,11 +1,9 @@
-// @ts-check
-
 import defineConfig from "11ty.ts";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
-import { DateTime } from "luxon";
+import { DateTime, DateTimeMaybeValid } from "luxon";
 import MarkdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 import footnote_plugin from "markdown-it-footnote";
@@ -21,33 +19,36 @@ const extractExcerpt = ({ templateContent = "" }) => {
   return templateContent;
 };
 
-/**
- * @param {string | Date} dateValue
- */
-function parseDate(dateValue) {
-  let localDate;
-  if (dateValue instanceof Date) {
-    // and YAML
-    localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(
-      TIME_ZONE,
-      { keepLocalTime: true },
-    );
-  } else if (typeof dateValue === "string") {
-    localDate = DateTime.fromISO(dateValue, { zone: TIME_ZONE });
-  }
-  if (localDate?.isValid === false) {
-    throw new Error(
-      `Invalid \`date\` value (${dateValue}) is invalid for ${this.page.inputPath}: ${localDate.invalidReason}`,
+class InvalidDateError extends Error {
+  constructor(dateValue: string, localDate: DateTime<false>) {
+    super(
+      `Invalid \`date\` value (${dateValue}) is invalid for ${global.page.inputPath}: ${localDate.invalidReason}`,
     );
   }
-  return localDate;
 }
 
-/** @param {Date} dateObj */
-const postDateFilter = (dateObj) =>
-  DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+const validateDate = (date: DateTimeMaybeValid, repr: string) => {
+  if (!date.isValid) throw new InvalidDateError(repr, date);
 
-/** @type {feedPlugin.Options} feedConfig */
+  return date;
+};
+
+const parseDate = (date: unknown) => {
+  if (date instanceof Date)
+    return validateDate(
+      DateTime.fromJSDate(date, { zone: "utc" }).setZone(TIME_ZONE, {
+        keepLocalTime: true,
+      }),
+      date.toString(),
+    );
+
+  if (typeof date === "string")
+    return validateDate(DateTime.fromISO(date, { zone: TIME_ZONE }), date);
+};
+
+const postDateFilter = (date: Date) =>
+  DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
+
 const feedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
@@ -65,7 +66,7 @@ const feedConfig = {
       email: "katiejanzen@347online.me",
     },
   },
-};
+} as const;
 
 export default defineConfig((eleventyConfig) => {
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
@@ -96,7 +97,6 @@ export default defineConfig((eleventyConfig) => {
 
   eleventyConfig.addPlugin(embedYouTube);
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
-  // @ts-expect-error redirectPlugin is badly behaved here
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
   eleventyConfig.addPlugin(feedPlugin, {
