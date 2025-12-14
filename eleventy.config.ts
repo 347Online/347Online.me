@@ -3,7 +3,7 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
-import { DateTime } from "luxon";
+import { DateTime, DateTimeMaybeValid } from "luxon";
 import MarkdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 import footnote_plugin from "markdown-it-footnote";
@@ -19,27 +19,35 @@ const extractExcerpt = ({ templateContent = "" }) => {
   return templateContent;
 };
 
-function parseDate(dateValue: string | Date) {
-  let localDate: DateTime<true | false> | undefined;
-  if (dateValue instanceof Date) {
-    // and YAML
-    localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(
-      TIME_ZONE,
-      { keepLocalTime: true },
-    );
-  } else if (typeof dateValue === "string") {
-    localDate = DateTime.fromISO(dateValue, { zone: TIME_ZONE });
-  }
-  if (localDate?.isValid === false) {
-    throw new Error(
-      `Invalid \`date\` value (${dateValue}) is invalid for ${this.page.inputPath}: ${localDate.invalidReason}`,
+class InvalidDateError extends Error {
+  constructor(dateValue: string, localDate: DateTime<false>) {
+    super(
+      `Invalid \`date\` value (${dateValue}) is invalid for ${global.page.inputPath}: ${localDate.invalidReason}`,
     );
   }
-  return localDate;
 }
 
-const postDateFilter = (dateObj: Date) =>
-  DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+const validateDate = (date: DateTimeMaybeValid, repr: string) => {
+  if (!date.isValid) throw new InvalidDateError(repr, date);
+
+  return date;
+};
+
+const parseDate = (date: unknown) => {
+  if (date instanceof Date)
+    return validateDate(
+      DateTime.fromJSDate(date, { zone: "utc" }).setZone(TIME_ZONE, {
+        keepLocalTime: true,
+      }),
+      date.toString(),
+    );
+
+  if (typeof date === "string")
+    return validateDate(DateTime.fromISO(date, { zone: TIME_ZONE }), date);
+};
+
+const postDateFilter = (date: Date) =>
+  DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
 
 const feedConfig = {
   type: "atom",
