@@ -73,16 +73,20 @@ export default defineConfig((eleventyConfig) => {
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
   eleventyConfig.addDateParsing(parseDate);
   eleventyConfig.addFilter("postDate", postDateFilter);
-  eleventyConfig.setLibrary(
-    "md",
-    MarkdownIt({
-      html: true,
-      linkify: true,
-    })
-      .use(footnote_plugin)
-      .use(MarkdownItGitHubAlerts)
-      .use(markdownItAttrs),
-  );
+
+  const md = MarkdownIt({
+    html: true,
+    linkify: true,
+  })
+    .use(footnote_plugin)
+    .use(MarkdownItGitHubAlerts)
+    .use(markdownItAttrs);
+
+  md.renderer.rules.footnote_anchor_name = (tokens, idx, _options, env) =>
+    `_${typeof env.docId === "string" ? env.docId : env.page.fileSlug}_${tokens[idx].meta.label ?? tokens[idx].meta.id}`;
+
+  eleventyConfig.setLibrary("md", md);
+
   eleventyConfig.addCollection("releasedPosts", (api) => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
