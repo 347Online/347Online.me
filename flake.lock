@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "enough-css": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764046340,
+        "narHash": "sha256-ETMmMd0BXx0D/NRiue/0p909mDL5RoMS0WUKQ0JYay0=",
+        "owner": "jeffkreeftmeijer",
+        "repo": "enough.css",
+        "rev": "ae8efa09082079397aee35b22bcc8a2ba512f5cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffkreeftmeijer",
+        "repo": "enough.css",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1759070547,
@@ -18,6 +34,7 @@
     },
     "root": {
       "inputs": {
+        "enough-css": "enough-css",
         "nixpkgs": "nixpkgs",
         "utils": "utils"
       }

@@ -2,10 +2,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
+    enough-css = {
+      url = "github:jeffkreeftmeijer/enough.css";
+      flake = false;
+    };
   };
 
   outputs =
-    {
+    inputs@{
       nixpkgs,
       utils,
       ...
@@ -17,6 +21,15 @@
           inherit system;
         };
         scripts = {
+          update-css =
+            let
+              fname = "./src/_includes/css/enough.css";
+            in
+            pkgs.writeShellScriptBin "update-css" ''
+              echo '/* Credit: enough.css - https://jeffkreeftmeijer.github.io/enough.css */' > ${fname}
+              echo >> ${fname}
+              cat ${inputs.enough-css}/enough.css >> ${fname}
+            '';
           build-resume = pkgs.writeShellApplication {
             name = "build-resume";
             runtimeInputs = with pkgs; [

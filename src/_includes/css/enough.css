@@ -1,0 +1,41 @@
+/* Credit: enough.css - https://jeffkreeftmeijer.github.io/enough.css */
+
+html{
+  font: calc(1em + 0.25vw)/1.4 system-ui, sans-serif;
+}
+
+body{
+  margin: auto;
+  padding: 0 1em;
+  max-width: 40em;
+}
+
+img, video{
+  max-width: 100%;
+  height: auto;
+}
+
+code, kbd, pre{
+  font-family: ui-monospace, monospace;
+  font-size: 0.8em;
+}
+
+pre {
+  overflow: auto;
+  border: 1px inset;
+  padding: 1em;
+}
+
+pre > code{
+  font-size: 1em;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th{
+  padding: 0.5em;
+  border: 1px solid;
+}
