@@ -8,6 +8,7 @@ import MarkdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 import footnote_plugin from "markdown-it-footnote";
 import MarkdownItGitHubAlerts from "markdown-it-github-alerts";
+import { syntaxPlugin } from "./plugins/syntax-highlight";
 
 const TIME_ZONE = "America/Chicago";
 
@@ -100,6 +101,7 @@ export default defineConfig((eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("**/*.pdf");
 
   eleventyConfig.addPlugin(embedYouTube);
+  eleventyConfig.addPlugin(syntaxPlugin);
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
   eleventyConfig.addPlugin(feedPlugin, feedConfig);
