@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.11";
     utils.url = "github:numtide/flake-utils";
     enough-css = {
       url = "github:jeffkreeftmeijer/enough.css";
@@ -76,7 +76,7 @@
         };
       in
       {
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs =
             with pkgs;
             [
