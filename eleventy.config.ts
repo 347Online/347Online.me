@@ -23,7 +23,7 @@ const extractExcerpt = ({ templateContent = "" }) => {
 class InvalidDateError extends Error {
   constructor(dateValue: string, localDate: DateTime<false>) {
     super(
-      `Invalid \`date\` value (${dateValue}) is invalid for ${global.page.inputPath}: ${localDate.invalidReason}`,
+      `Invalid \`date\` value (${dateValue}) is invalid: ${localDate.invalidReason}`,
     );
   }
 }
