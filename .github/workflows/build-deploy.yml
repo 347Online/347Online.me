@@ -17,4 +17,4 @@ jobs:
           ssh-keyscan ${{secrets.SSH_HOST}} >> ~/.ssh/known_hosts
           echo "${{secrets.SSH_PRIVATE_KEY}}" > deploy_key
           chmod 600 ./deploy_key
-          rsync -av --delete -e 'ssh -i ./deploy_key' _site/ "${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/home/katie/website"
+          rsync -av --delete -e 'ssh -i ./deploy_key' _site/ "${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/var/www/347Online.me"
