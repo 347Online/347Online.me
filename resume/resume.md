@@ -13,11 +13,12 @@ ______________________________________________________________________
 ::: {.column}
 ## Qualifications
 
-- **Languages:** Nix, Rust, JavaScript / TypeScript, Python, Java
+- **Languages:** Rust, JavaScript / TypeScript, Python, Java
 - **Frameworks:** React, Redux, MUI, Node.js, Express, ViteJS, Webpack
 - **Databases:** PostgreSQL, MongoDB / Mongoose
 - **Testing:** Playwright, JUnit, Jest, Puppeteer, Supertest
 - **Web:** RESTful APIs, WebSockets
+- Infrastructure: Nix, GitHub Actions, Terraform
 :::
 ::: {.column}
 
@@ -37,14 +38,21 @@ ______________________________________________________________________
 
 In one way or another, I've been developing software for just about as long as I can remember.
 I’ve built full-stack web applications, video games and game modifications, a command line interface for running a secret santa event, I can do it all.
-I'm a hard worker so if you need something done right, look no further: I'm your new developer.
+I'm a hard worker so if you need something done right, I'm your new developer.
 
 ## Experience                                                       [2011 - Present]{.end}
 
-#### Senior Software Engineer, Amplify Education                    [2025 - Present]{.end}
-TODO!
+#### Senior Software Engineer (Response Interpretation Engine), Amplify Education                    [2025 - Present]{.end}
 
-#### Front-End Developer, Take Command Health Insurance Agency Inc. [2022 - 2024]{.end}
+Education Company producing Curricula & Learning Materials for Students and Reporting & Analysis Tooling for Teachers
+
+- Built recognition systems called Feature Extractors to identify and represent nuanced aspects of a student's individual response in order to recognize Ways of Thinking and determine how student arrived at given answer
+- Spearheaded two-team initiative to implement in-house Domain-Specific Language facilitating more thorough analysis of student responses to more complex questions such as those involving digital manipulatives within Desmos Graphing Calculator
+- Defined work for the team at the Project-Level Scope, creating and revising new Work Tickets as well as Leading Refinement Ceremonies
+- Continually enhanced Linter & Formatter configuration across both my team's product and the organization's shared monorepo to catch more issues and prevent distractions during Code Review
+- Organized Lessons on TypeScript for my team detailing more complex features such as Subtypes & Supertypes, Complex Generic Type Constraints, Pseudo-Nominal types, etc.
+
+#### Front-End Developer (HRA Hub), Take Command Health Insurance Agency Inc. [2022 - 2024]{.end}
 
 SaaS Company offering Web Platform for Employers to manage a Health Reimbursement Arrangement for their Employees
 
