@@ -17,7 +17,7 @@ ______________________________________________________________________
 - **Databases:** PostgreSQL, MongoDB / Mongoose
 - **Testing:** Playwright, JUnit, Jest, Puppeteer, Supertest
 - **Web:** RESTful APIs, WebSockets
-- Infrastructure: Nix, GitHub Actions, Terraform
+- **Infrastructure:** Nix, GitHub Actions, Terraform
 :::
 ::: {.column}
 
