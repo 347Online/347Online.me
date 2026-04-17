@@ -23,6 +23,7 @@
           text = ''
             shopt -s globstar
 
+            title="Katie Janzen Resumé $(date +%Y)"
             outdir="_site"
 
             for x in resume/*.md; do
@@ -33,7 +34,7 @@
               cp resume/*.css "$outdir/"
 
               # Plaintext
-              pandoc "$x" -t plain -o "$outdir/''${fname%.*}.txt"
+              pandoc -M title="$title" "$x" -t plain -o "$outdir/''${fname%.*}.txt"
 
               template () {
                 if [[ -f $template_path ]]; then
@@ -50,10 +51,10 @@
               }
 
               # HTML
-              eval "pandoc $x -t html $(template)" | prettier --stdin-filepath foo.html > "$outdir/''${fname%.*}.html"
+              eval "pandoc -M title='$title' $x -t html $(template)" | prettier --stdin-filepath foo.html > "$outdir/''${fname%.*}.html"
 
               # PDF
-              eval "pandoc $x -t html $(template)$(css) -o $outdir/''${fname%.*}.pdf"
+              eval "pandoc -M title='$title' $x -t html $(template)$(css) -o $outdir/''${fname%.*}.pdf"
             done
           '';
         };
