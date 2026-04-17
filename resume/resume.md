@@ -64,11 +64,18 @@ SaaS Company offering Web Platform for Employers to manage a Health Reimbursemen
 
 ### Open Source                                                     [2022 - Present]{.end}
 
+#### Author, KClip 📋                                               [2025 - Present]{.end}
+
+Command Line Interface written in Rust to access the system clipboard on Windows, Mac, or Linux systems
+
+- Shared interface between each supported Operating System provides user a consistent experience regardless of available hardware
+
 #### Contributor, Nix Ecosystem                                     [2024 - Present]{.end}
 
 Purely functional package manager, package repository, and software packaging toolset for fully declarative package management and configuration
 
 - Shared system configuration spanning personal workstations, laptops, home servers, and portable Neovim setup
+- Assisted in development of support for Thunderbird Mail Rules in Nix Home-Manager
 - Contributed package definition to nixpkgs for tsc.nvim Neovim Plugin by dmmulroy
 - Contributed declarative module to NixVim for vim-be-good Neovim Plugin by ThePrimeagen
 
