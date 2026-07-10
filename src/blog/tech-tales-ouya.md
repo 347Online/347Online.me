@@ -3,7 +3,7 @@ layout: layout/link-post.njk
 title: |
   Tech Tales: The Ouya
 link: https://youtu.be/7VyT0o1sNEY
-date: 2025-07-10
+date: 2026-07-10
 ---
 
 I was recently on an episode of [Tech Tales](https://corbin.io/podcast/), the podcast hosted by my good friend [Corbin Davenport](https://corbin.io/)
