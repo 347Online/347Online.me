@@ -10,7 +10,7 @@ import footnote_plugin from "markdown-it-footnote";
 import MarkdownItGitHubAlerts from "markdown-it-github-alerts";
 import { syntaxPlugin } from "./plugins/syntax-highlight";
 
-const TIME_ZONE = "America/Chicago";
+const TIME_ZONE = "America/Denver";
 
 const extractExcerpt = ({ templateContent = "" }) => {
   const end = templateContent.indexOf("</p>");
