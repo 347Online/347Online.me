@@ -89,12 +89,12 @@ export default defineConfig((eleventyConfig) => {
   eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addCollection("releasedPosts", (api) => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    const today = new Date();
+    today.setDate(today.getDate());
 
     return api
       .getFilteredByTag("blog")
-      .filter((x) => tomorrow.getTime() >= x.date.getTime());
+      .filter((x) => today.getTime() >= x.date.getTime());
   });
 
   eleventyConfig.addPassthroughCopy("src/assets");
