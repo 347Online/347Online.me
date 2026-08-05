@@ -1,7 +1,6 @@
 name: Build
 on:
-  workflaw_dispatch:
-    inputs: []
+  workflow_dispatch:
   schedule:
     - cron: "5 6 * * *"
   push:
