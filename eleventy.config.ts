@@ -88,14 +88,11 @@ export default defineConfig((eleventyConfig) => {
 
   eleventyConfig.setLibrary("md", md);
 
-  eleventyConfig.addCollection("releasedPosts", (api) => {
-    const today = new Date();
-    today.setDate(today.getDate());
-
-    return api
+  eleventyConfig.addCollection("releasedPosts", (api) =>
+    api
       .getFilteredByTag("blog")
-      .filter((x) => today.getTime() >= x.date.getTime());
-  });
+      .filter((x) => new Date().getTime() >= x.date.getTime()),
+  );
 
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("**/*.pdf");
