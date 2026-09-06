@@ -3,14 +3,14 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
-import { DateTime, DateTimeMaybeValid } from "luxon";
+import { jsxToString } from "jsx-async-runtime";
 import MarkdownIt from "markdown-it";
 import markdownItAttrs from "markdown-it-attrs";
 import footnote_plugin from "markdown-it-footnote";
 import MarkdownItGitHubAlerts from "markdown-it-github-alerts";
+import "tsx/esm";
+import { datePlugin } from "./plugins/date-plugin";
 import { syntaxPlugin } from "./plugins/syntax-highlight";
-
-const TIME_ZONE = "America/Denver";
 
 const extractExcerpt = ({ templateContent = "" }) => {
   const end = templateContent.indexOf("</p>");
@@ -19,39 +19,6 @@ const extractExcerpt = ({ templateContent = "" }) => {
 
   return templateContent;
 };
-
-class InvalidDateError extends Error {
-  constructor(dateValue: string, localDate: DateTime<false>) {
-    super(
-      `Invalid \`date\` value (${dateValue}) is invalid: ${localDate.invalidReason}`,
-    );
-  }
-}
-
-const dateIsValid = (date: DateTimeMaybeValid): date is DateTime<true> =>
-  date.isValid;
-
-const validateDate = (date: DateTimeMaybeValid, repr: string) => {
-  if (!dateIsValid(date)) throw new InvalidDateError(repr, date);
-
-  return date;
-};
-
-const parseDate = (date: unknown) => {
-  if (date instanceof Date)
-    return validateDate(
-      DateTime.fromJSDate(date, { zone: "utc" }).setZone(TIME_ZONE, {
-        keepLocalTime: true,
-      }),
-      date.toString(),
-    );
-
-  if (typeof date === "string")
-    return validateDate(DateTime.fromISO(date, { zone: TIME_ZONE }), date);
-};
-
-const postDateFilter = (date: Date) =>
-  DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
 
 const atomFeedConfig = {
   type: "atom",
@@ -85,10 +52,21 @@ const jsonFeedConfig = {
 } as const;
 
 export default defineConfig((eleventyConfig) => {
+  eleventyConfig.addPlugin(datePlugin);
+
+  eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+    key: "11ty.js",
+    compile: () =>
+      async function render(data: unknown) {
+        const content = await this.defaultRenderer(data);
+        return jsxToString(content);
+      },
+  });
+
+  eleventyConfig.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
+
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
-  eleventyConfig.addDateParsing(parseDate);
-  eleventyConfig.addFilter("postDate", postDateFilter);
 
   const md = MarkdownIt({
     html: true,
