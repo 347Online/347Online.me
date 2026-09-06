@@ -4,12 +4,9 @@ import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
 import { jsxToString } from "jsx-async-runtime";
-import MarkdownIt from "markdown-it";
-import markdownItAttrs from "markdown-it-attrs";
-import footnote_plugin from "markdown-it-footnote";
-import MarkdownItGitHubAlerts from "markdown-it-github-alerts";
 import "tsx/esm";
 import { datePlugin } from "./plugins/date-plugin";
+import { markdownPlugin } from "./plugins/markdown-plugin";
 import { syntaxPlugin } from "./plugins/syntax-highlight";
 
 const extractExcerpt = ({ templateContent = "" }) => {
@@ -53,6 +50,7 @@ const jsonFeedConfig = {
 
 export default defineConfig((eleventyConfig) => {
   eleventyConfig.addPlugin(datePlugin);
+  eleventyConfig.addPlugin(markdownPlugin);
 
   eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
     key: "11ty.js",
@@ -67,19 +65,6 @@ export default defineConfig((eleventyConfig) => {
 
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
-
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-  })
-    .use(footnote_plugin)
-    .use(MarkdownItGitHubAlerts)
-    .use(markdownItAttrs);
-
-  md.renderer.rules.footnote_anchor_name = (tokens, idx, _options, env) =>
-    `_${typeof env.docId === "string" ? env.docId : env.page.fileSlug}_${tokens[idx].meta.label ?? tokens[idx].meta.id}`;
-
-  eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addCollection("releasedPosts", (api) =>
     api
