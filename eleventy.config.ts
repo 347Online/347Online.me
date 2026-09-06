@@ -50,7 +50,7 @@ const parseDate = (date: unknown) => {
 const postDateFilter = (date: Date) =>
   DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
 
-const feedConfig = {
+const atomFeedConfig = {
   type: "atom",
   outputPath: "/blog/feed.xml",
   collection: {
@@ -67,6 +67,18 @@ const feedConfig = {
       email: "katiejanzen@347online.me",
     },
   },
+} as const;
+
+const rssFeedConfig = {
+  ...atomFeedConfig,
+  type: "rss",
+  outputPath: "/blog/rss.xml",
+} as const;
+
+const jsonFeedConfig = {
+  ...atomFeedConfig,
+  type: "json",
+  outputPath: "/blog/feed.json",
 } as const;
 
 export default defineConfig((eleventyConfig) => {
@@ -101,17 +113,10 @@ export default defineConfig((eleventyConfig) => {
   eleventyConfig.addPlugin(syntaxPlugin);
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
-  eleventyConfig.addPlugin(feedPlugin, feedConfig);
-  eleventyConfig.addPlugin(feedPlugin, {
-    ...feedConfig,
-    type: "json",
-    outputPath: "/blog/feed.json",
-  });
-  eleventyConfig.addPlugin(feedPlugin, {
-    ...feedConfig,
-    type: "rss",
-    outputPath: "/blog/rss.xml",
-  });
+
+  eleventyConfig.addPlugin(feedPlugin, atomFeedConfig);
+  eleventyConfig.addPlugin(feedPlugin, jsonFeedConfig);
+  eleventyConfig.addPlugin(feedPlugin, rssFeedConfig);
 
   return {
     passthroughFileCopy: true,
