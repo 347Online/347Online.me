@@ -28,8 +28,11 @@ class InvalidDateError extends Error {
   }
 }
 
+const dateIsValid = (date: DateTimeMaybeValid): date is DateTime<true> =>
+  date.isValid;
+
 const validateDate = (date: DateTimeMaybeValid, repr: string) => {
-  if (!date.isValid) throw new InvalidDateError(repr, date);
+  if (!dateIsValid(date)) throw new InvalidDateError(repr, date);
 
   return date;
 };
