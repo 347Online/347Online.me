@@ -1,9 +1,18 @@
 const figures = [
-  "Phineas Gage",
-  "John Chapman",
-  "Rufus Xavier Sarsaparilla",
-  "Billy Joel Armstrong",
-  "T. Yoshisaur Munchakoopas",
+  {
+    name: "Phineas Gage",
+    url: "https://en.wikipedia.org/wiki/Phineas_Gage",
+  },
+  {
+    name: "Rufus Xavier Sarsaparilla",
+    url: "https://www.youtube.com/watch?v=koZFca8AkT0",
+  },
+  {
+    name: "Billy Joel Armstrong",
+    url: "https://billyjoelarmstrong.bandcamp.com",
+  },
 ];
 
-export default figures[Math.round(Math.random() * figures.length)];
+const figure = figures[Math.floor(Math.random() * figures.length)];
+
+export default figure;
