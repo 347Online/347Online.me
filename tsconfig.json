@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    // TSX Recommended Settings
+    // More Info: https://tsx.hirok.io/typescript#tsconfig-json
+    "moduleDetection": "force",
+    "module": "Preserve",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  }
+}

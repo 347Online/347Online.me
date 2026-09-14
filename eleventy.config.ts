@@ -1,16 +1,12 @@
 import defineConfig from "11ty.ts";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
-import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import redirectPlugin from "eleventy-plugin-redirects";
 import embedYouTube from "eleventy-plugin-youtube-embed";
-import { DateTime, DateTimeMaybeValid } from "luxon";
-import MarkdownIt from "markdown-it";
-import markdownItAttrs from "markdown-it-attrs";
-import footnote_plugin from "markdown-it-footnote";
-import MarkdownItGitHubAlerts from "markdown-it-github-alerts";
+import "tsx/esm";
+import { datePlugin } from "./plugins/date-plugin";
+import { feedSubscriptionsPlugin } from "./plugins/feed-subscriptions-plugin";
+import { markdownPlugin } from "./plugins/markdown-plugin";
 import { syntaxPlugin } from "./plugins/syntax-highlight";
-
-const TIME_ZONE = "America/Denver";
 
 const extractExcerpt = ({ templateContent = "" }) => {
   const end = templateContent.indexOf("</p>");
@@ -20,73 +16,18 @@ const extractExcerpt = ({ templateContent = "" }) => {
   return templateContent;
 };
 
-class InvalidDateError extends Error {
-  constructor(dateValue: string, localDate: DateTime<false>) {
-    super(
-      `Invalid \`date\` value (${dateValue}) is invalid: ${localDate.invalidReason}`,
-    );
-  }
-}
-
-const validateDate = (date: DateTimeMaybeValid, repr: string) => {
-  if (!date.isValid) throw new InvalidDateError(repr, date);
-
-  return date;
-};
-
-const parseDate = (date: unknown) => {
-  if (date instanceof Date)
-    return validateDate(
-      DateTime.fromJSDate(date, { zone: "utc" }).setZone(TIME_ZONE, {
-        keepLocalTime: true,
-      }),
-      date.toString(),
-    );
-
-  if (typeof date === "string")
-    return validateDate(DateTime.fromISO(date, { zone: TIME_ZONE }), date);
-};
-
-const postDateFilter = (date: Date) =>
-  DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
-
-const feedConfig = {
-  type: "atom",
-  outputPath: "/blog/feed.xml",
-  collection: {
-    name: "releasedPosts",
-    limit: 0, // 0 means no limit
-  },
-  metadata: {
-    language: "en",
-    title: "Katie's Place | 347Online.me",
-    subtitle: "",
-    base: "https://347online.me/blog/",
-    author: {
-      name: "Katie Janzen",
-      email: "katiejanzen@347online.me",
-    },
-  },
-} as const;
-
 export default defineConfig((eleventyConfig) => {
+  // Copy these files unmodified directly into the output
+  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("**/*.pdf");
+
+  // Custom Plugins
+  eleventyConfig.addPlugin(datePlugin);
+  eleventyConfig.addPlugin(markdownPlugin);
+  eleventyConfig.addPlugin(feedSubscriptionsPlugin);
+
   eleventyConfig.addShortcode("excerpt", extractExcerpt);
   eleventyConfig.addGlobalData("layout", "layout/base.njk");
-  eleventyConfig.addDateParsing(parseDate);
-  eleventyConfig.addFilter("postDate", postDateFilter);
-
-  const md = MarkdownIt({
-    html: true,
-    linkify: true,
-  })
-    .use(footnote_plugin)
-    .use(MarkdownItGitHubAlerts)
-    .use(markdownItAttrs);
-
-  md.renderer.rules.footnote_anchor_name = (tokens, idx, _options, env) =>
-    `_${typeof env.docId === "string" ? env.docId : env.page.fileSlug}_${tokens[idx].meta.label ?? tokens[idx].meta.id}`;
-
-  eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addCollection("releasedPosts", (api) =>
     api
@@ -94,24 +35,10 @@ export default defineConfig((eleventyConfig) => {
       .filter((x) => new Date().getTime() >= x.date.getTime()),
   );
 
-  eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("**/*.pdf");
-
   eleventyConfig.addPlugin(embedYouTube);
   eleventyConfig.addPlugin(syntaxPlugin);
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addPlugin(redirectPlugin, { template: "clientSide" });
-  eleventyConfig.addPlugin(feedPlugin, feedConfig);
-  eleventyConfig.addPlugin(feedPlugin, {
-    ...feedConfig,
-    type: "json",
-    outputPath: "/blog/feed.json",
-  });
-  eleventyConfig.addPlugin(feedPlugin, {
-    ...feedConfig,
-    type: "rss",
-    outputPath: "/blog/rss.xml",
-  });
 
   return {
     passthroughFileCopy: true,
